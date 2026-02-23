@@ -90,3 +90,5 @@ app.listen(process.env.PORT, () => {
 function toUpperCase(text) {
   return text.toUpperCase();
 }
+
+module.exports = { app, toUpperCase };
