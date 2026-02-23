@@ -76,6 +76,17 @@ app.delete("/clients/:id", (req, res) => {
   });
 });
 
+app.get("/to_uppercase/:text", (req, res) => {
+  const text = req.params.text;
+  const uppercased = toUpperCase(text);
+  res.json({ original: text, uppercased });
+});
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Serveur démarré sur le port ${process.env.PORT}`);
 });
+
+function toUpperCase(text) {
+  return text.toUpperCase();
+}
