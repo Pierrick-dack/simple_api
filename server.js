@@ -83,10 +83,14 @@ app.get("/to_uppercase/:text", (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Serveur démarré sur le port ${process.env.PORT}`);
-});
+if (require.main === module) {
+  app.listen(process.env.PORT, () => {
+    console.log(`Serveur démarré sur le port ${process.env.PORT}`);
+  });
+}
 
 function toUpperCase(text) {
   return text.toUpperCase();
 }
+
+module.exports = { app, toUpperCase };
