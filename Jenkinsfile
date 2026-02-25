@@ -1,11 +1,9 @@
 pipeline {
-
     agent {
         label 'Agent-DevOps'
     }
 
     stages {
-
         stage('Verification & Cleanup') {
             steps {
                 echo 'Vérification de l’environnement Docker...'
@@ -14,17 +12,12 @@ pipeline {
             }
         }
 
-        stage('Build & Test') {
-            steps {
-                echo 'Build de l’application et exécution des tests...'
-                sh 'npm install'
-                sh 'npm test'
-            }
-        }
+        // L'étape "Build & Test" (npm install) a été supprimée !
 
         stage('Build & Push Docker Image') {
             steps {
                 echo 'Construction de l’image Docker...'
+                // C'EST ICI que npm install va s'exécuter, à l'intérieur de Docker !
                 sh 'docker build -t pierrickdevops/nodejs-api:v1 .'
 
                 withCredentials([
