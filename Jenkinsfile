@@ -4,7 +4,6 @@ pipeline {
         label 'Agent-DevOps'
     }
 
-    stages {
         stage('Verification & Cleanup') {
             steps {
                 echo 'Vérification de l\'environnement...'
@@ -13,12 +12,12 @@ pipeline {
             }
         }
 
-        // Étape de CI classique (Optionnelle mais recommandée)
-        // Attention : Ton Agent-DevOps doit avoir Node et npm d'installés pour que ça marche.
-        stage('Install & Test') {
+        // L'ÉTAPE "Install & Test" A ÉTÉ SUPPRIMÉE ICI
+
+        stage('Build & Push to DockerHub') {
             steps {
-                echo 'Installation des dépendances et tests...'
-                sh 'npm install'
+                echo 'Construction de l\'image Docker de l\'API...'
+                sh 'docker build -t pierrickdevops/nodejs-api:v1 .'
                 // sh 'npm run migrate' // À décommenter si ta BDD est déjà accessible
                 // sh 'npm run seed'    // À décommenter si besoin
                 sh 'npm test'
